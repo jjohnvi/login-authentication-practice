@@ -61,7 +61,16 @@ const mapStateToProps = state => {
   };
 };
 
+// // formal way
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     updateUsername: value => dispatch(updateUsername(value)),
+//     updatePassword: value => dispatch(updatePassword(value))
+//   };
+// };
+
 export default connect(
   mapStateToProps,
   { updateUsername, updatePassword }
+  // mapDispatchToProps // formal way
 )(Login);
