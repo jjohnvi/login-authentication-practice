@@ -24,7 +24,7 @@ class Login extends Component {
         password: this.props.password
       })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         //go to logged in page
         this.props.history.push("/page1");
       })
@@ -47,6 +47,9 @@ class Login extends Component {
         </h3>
         <div>
           <button type="submit">Login</button>
+          <Link to="/register">
+            <button>Register</button>
+          </Link>
         </div>
         {this.state.error ? <h1>Wrong username & password</h1> : null}
       </form>

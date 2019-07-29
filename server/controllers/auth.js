@@ -1,18 +1,28 @@
 const bcrypt = require("bcryptjs");
 
 const registerUser = async (req, res, next) => {
-  const { username, password, isadmin } = req.body;
+  const { firstname, lastname, username, password, email, isadmin } = req.body;
   const db = req.app.get("db");
 
   const checkedUser = await db.get_user([username]);
   if (checkedUser.length === 0) {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
-    const user = await db.create_user([username, hashedPassword, isadmin]);
-
-    req.session.user = {
+    const user = await db.create_user([
+      firstname,
+      lastname,
       username,
       hashedPassword,
+      email,
+      isadmin
+    ]);
+
+    req.session.user = {
+      firstname,
+      lastname,
+      username,
+      hashedPassword,
+      email,
       isadmin
     };
     res.json(user);
